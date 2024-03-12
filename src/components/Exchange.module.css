@@ -1,0 +1,24 @@
+.result {
+
+}
+
+.wrapper {
+    padding: 20px;
+    background-color: antiquewhite;
+    border-radius: 8px;
+    border: 1px solid #00000036;
+}
+
+.wrapper input {
+    height: 24px;
+    padding:2px 4px ;
+    border: 1px solid #00000036;
+}
+
+.wrapper p {
+    margin: 8px 0; 
+}
+
+.wrapper select {
+    margin-bottom: 8px;
+}

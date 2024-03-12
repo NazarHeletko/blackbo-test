@@ -1,24 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import Exchange from "./components/Exchange";
 
 function App() {
+  const [exchange, setExchange] = useState(null);
+
+  useEffect(() => {
+    const ws = new WebSocket("wss://stream.binance.com:9443/ws/ethusdt@trade");
+
+
+
+    ws.onmessage = (event) => {
+
+        const data = JSON.parse(event.data);
+        setExchange(data.p);
+
+    };
+
+    
+    return () => {
+      ws.close();
+
+    };
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Exchange/>
     </div>
   );
 }
