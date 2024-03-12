@@ -1,24 +1,76 @@
-.result {
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
 
+
+
+.result {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result span {
+    background-color: aquamarine;
+    height: 40px;
+    width: 106px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000de;
+    font-weight: 500;
+    border-radius: 6px;
 }
 
 .wrapper {
-    padding: 20px;
-    background-color: antiquewhite;
-    border-radius: 8px;
-    border: 1px solid #00000036;
+  height: 340px;
+  width: 266px;
+  background-color: #1c3e59;
+  border-radius: 8px;
+  border: 1px solid #00000036;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #ffe2ce;
+  font-family: "Space Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  /* font-style: normal; */
+  -webkit-box-shadow: 0px 0px 98px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 98px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 98px 0px rgba(0, 0, 0, 0.75);
+  padding-bottom: 8px;
 }
 
 .wrapper input {
-    height: 24px;
-    padding:2px 4px ;
-    border: 1px solid #00000036;
+  height: 28px;
+  width: 194px;
+  padding: 2px 4px;
+  border: 1px solid #00000036;
+  border-radius: 6px;
+  font-size: 18px;
+  background-color: #e7f4ff;
+}
+.wrapper select {
+    height: 30px;
+    width: 60px;
+    background-color: #e7f4ff;
+    border-radius: 6px;
+    font-size: 18px;
+}
+
+.wrapper select:focus{
+    outline: 1px solid rgb(255, 186, 13);
+}
+
+.wrapper input:focus{
+    outline: 1px solid rgb(255, 186, 13);
 }
 
 .wrapper p {
-    margin: 8px 0; 
+  margin: 8px 0;
+  font-size: 28px;
 }
 
 .wrapper select {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }

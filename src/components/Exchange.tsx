@@ -3,35 +3,38 @@ import styles from "./Exchange.module.css";
 
 function Exchange() {
   const [option, setOption] = useState("sell");
-  const [exchange, setExchange] = useState(0);
+  const [exchange, setExchange] = useState({ bit: 0, ask: 0 });
   const [input, setInput] = useState(0);
   const [sellValue, setSellValue] = useState(0);
   const [buyValue, setBuyValue] = useState(0);
-
-  const handleChangeOption = (e: any) => {
-    setOption(e.target.value);
-  };
 
   const handleChangeInput = (e: any) => {
     setInput(e.target.value);
   };
 
-  useEffect(() => {
-    setSellValue(input * exchange);
-  }, [input]);
+  const handleChangeOption = (e: any) => {
+    setOption(e.target.value);
+  };
 
   useEffect(() => {
-    setBuyValue(input * exchange);
-  }, [input]);
+    const countedSell = input*exchange.bit
+    setSellValue(Number(countedSell.toFixed(2)))
+  }, [exchange]);
 
   useEffect(() => {
-    const ws = new WebSocket("wss://stream.binance.com:9443/ws/ethusdt@trade");
+    const countedBuy = input*exchange.ask
+    setBuyValue(Number(countedBuy.toFixed(2)))
+  }, [exchange]);
+
+  useEffect(() => {
+    const ws = new WebSocket(
+      "wss://stream.binance.com:9443/ws/ethusdt@bookTicker"
+    );
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      setExchange(data.p);
+      setExchange({ bit: data.b, ask: data.a });
     };
-
     return () => {
       ws.close();
     };
@@ -47,8 +50,8 @@ function Exchange() {
         <option value="buy">buy</option>
       </select>
       <div className={styles.result}>
-        {option === "sell" && <span>You will receive {sellValue} $</span>}
-        {option === "buy" && <span>You will spend {buyValue} $</span>}
+        {option === "sell" && <><p>You will receive</p> <span>{sellValue} $</span></>}
+        {option === "buy" && <><p>You will spend</p> <span>{buyValue} $</span></>}
       </div>
     </div>
   );
