@@ -9,7 +9,7 @@ function Exchange() {
   const [buyValue, setBuyValue] = useState(0);
 
   const handleChangeInput = (e: any) => {
-    setInput(e.target.value);
+    setInput(e.target.value >= 0 ? e.target.value : 0);
   };
 
   const handleChangeOption = (e: any) => {
